@@ -1,0 +1,493 @@
+{
+  "description": "PaddleNLP情感分析模型评估测试集（优化版）",
+  "version": "2.0",
+  "created_at": "2026-05-07",
+  "total_samples": 120,
+  "label_distribution": {
+    "positive": 40,
+    "negative": 40,
+    "neutral": 40
+  },
+  "samples": [
+    {
+      "text": "这个产品真的太棒了，使用体验非常好，强烈推荐给大家！",
+      "label": "positive"
+    },
+    {
+      "text": "服务质量很差，客服态度恶劣，再也不会购买了。",
+      "label": "negative"
+    },
+    {
+      "text": "据报道，该公司今年营收同比增长15%。",
+      "label": "neutral"
+    },
+    {
+      "text": "非常满意这次购物体验，物流很快，商品质量也很好，五星好评！",
+      "label": "positive"
+    },
+    {
+      "text": "这个软件bug太多了，经常闪退，严重影响使用，太失望了。",
+      "label": "negative"
+    },
+    {
+      "text": "会议定于明天下午三点在会议室举行。",
+      "label": "neutral"
+    },
+    {
+      "text": "感谢工作人员的热情帮助，问题得到了及时解决，非常感谢！",
+      "label": "positive"
+    },
+    {
+      "text": "这次活动组织得很混乱，完全不符合预期，浪费时间和金钱。",
+      "label": "negative"
+    },
+    {
+      "text": "该政策将于下个月正式实施。",
+      "label": "neutral"
+    },
+    {
+      "text": "这款手机拍照效果出色，续航能力强，性价比很高，值得购买。",
+      "label": "positive"
+    },
+    {
+      "text": "餐厅卫生条件堪忧，食物也不新鲜，让人很失望，不会再来了。",
+      "label": "negative"
+    },
+    {
+      "text": "地铁5号线将于年底开通运营。",
+      "label": "neutral"
+    },
+    {
+      "text": "老师讲课生动有趣，学生们都很喜欢这门课程，收获很大。",
+      "label": "positive"
+    },
+    {
+      "text": "交通拥堵严重，通勤时间增加了近一倍，非常影响生活。",
+      "label": "negative"
+    },
+    {
+      "text": "数据显示，上季度用户增长率为12%。",
+      "label": "neutral"
+    },
+    {
+      "text": "这次旅行安排得很周到，景点选择也很棒，玩得很开心！",
+      "label": "positive"
+    },
+    {
+      "text": "噪音污染严重影响了周边居民的正常生活，投诉无门。",
+      "label": "negative"
+    },
+    {
+      "text": "项目进度按计划推进，目前已完成60%。",
+      "label": "neutral"
+    },
+    {
+      "text": "这本书内容丰富，观点新颖，读后受益匪浅，强烈推荐！",
+      "label": "positive"
+    },
+    {
+      "text": "售后服务态度极差，投诉多次都没有得到解决，太失望了。",
+      "label": "negative"
+    },
+    {
+      "text": "新系统将于本周五上线试运行。",
+      "label": "neutral"
+    },
+    {
+      "text": "志愿者们的无私奉献让人感动，社会需要更多这样的人，点赞！",
+      "label": "positive"
+    },
+    {
+      "text": "环境污染问题日益严重，治理措施效果不明显，令人担忧。",
+      "label": "negative"
+    },
+    {
+      "text": "公司年度报告已发布，可在官网下载查看。",
+      "label": "neutral"
+    },
+    {
+      "text": "这个APP界面设计简洁美观，操作流畅，用户体验极佳，很好用！",
+      "label": "positive"
+    },
+    {
+      "text": "产品质量存在严重问题，使用不到一周就坏了，质量太差了。",
+      "label": "negative"
+    },
+    {
+      "text": "天气预报显示明天有雨，请记得带伞。",
+      "label": "neutral"
+    },
+    {
+      "text": "医生技术精湛，护士服务周到，住院期间照顾得很贴心，非常感谢！",
+      "label": "positive"
+    },
+    {
+      "text": "网络信号太差了，视频会议经常卡顿，严重影响工作效率。",
+      "label": "negative"
+    },
+    {
+      "text": "图书馆开放时间为每天上午9点至晚上9点。",
+      "label": "neutral"
+    },
+    {
+      "text": "这部电影剧情精彩，演员演技在线，值得一看，强烈推荐！",
+      "label": "positive"
+    },
+    {
+      "text": "快递延误严重，客服推卸责任，体验很差，再也不会用了。",
+      "label": "negative"
+    },
+    {
+      "text": "该路段正在进行施工，请绕行。",
+      "label": "neutral"
+    },
+    {
+      "text": "同事之间互帮互助，团队氛围非常好，工作很开心！",
+      "label": "positive"
+    },
+    {
+      "text": "房价居高不下，年轻人买房压力巨大，生活负担重。",
+      "label": "negative"
+    },
+    {
+      "text": "会议纪要已发送至各位邮箱，请查收。",
+      "label": "neutral"
+    },
+    {
+      "text": "新政策出台后，办事流程简化了很多，效率明显提高，很满意！",
+      "label": "positive"
+    },
+    {
+      "text": "这个平台虚假宣传，实际服务与承诺严重不符，欺骗消费者。",
+      "label": "negative"
+    },
+    {
+      "text": "学校将于下周举行秋季运动会。",
+      "label": "neutral"
+    },
+    {
+      "text": "酒店环境优雅，设施齐全，服务热情周到，住得很舒服！",
+      "label": "positive"
+    },
+    {
+      "text": "课程安排不合理，内容陈旧，学不到实用知识，浪费时间。",
+      "label": "negative"
+    },
+    {
+      "text": "展览将持续至本月底，欢迎参观。",
+      "label": "neutral"
+    },
+    {
+      "text": "这次培训收获很大，讲师专业，内容实用，非常有帮助！",
+      "label": "positive"
+    },
+    {
+      "text": "小区物业管理混乱，业主投诉无门，服务态度很差。",
+      "label": "negative"
+    },
+    {
+      "text": "该研究论文已发表在国际期刊上。",
+      "label": "neutral"
+    },
+    {
+      "text": "朋友推荐的这家餐厅果然名不虚传，菜品美味，价格实惠，很好吃！",
+      "label": "positive"
+    },
+    {
+      "text": "这个广告涉嫌虚假宣传，误导消费者，应该被查处。",
+      "label": "negative"
+    },
+    {
+      "text": "公司将于下月举办年度总结大会。",
+      "label": "neutral"
+    },
+    {
+      "text": "社区组织的公益活动很有意义，居民积极参与，氛围很好！",
+      "label": "positive"
+    },
+    {
+      "text": "食品安全问题频发，消费者权益难以保障，令人担忧。",
+      "label": "negative"
+    },
+    {
+      "text": "该产品已通过质量认证，符合国家标准。",
+      "label": "neutral"
+    },
+    {
+      "text": "孩子在学校进步很大，老师教导有方，非常感谢！",
+      "label": "positive"
+    },
+    {
+      "text": "这个理财产品风险很大，很多人亏损严重，投资需谨慎。",
+      "label": "negative"
+    },
+    {
+      "text": "航班延误通知已发送，请关注最新动态。",
+      "label": "neutral"
+    },
+    {
+      "text": "新开的公园环境优美，设施完善，是休闲好去处，很喜欢！",
+      "label": "positive"
+    },
+    {
+      "text": "网络诈骗手段层出不穷，很多人上当受骗，需要提高警惕。",
+      "label": "negative"
+    },
+    {
+      "text": "该法案已通过审议，即将颁布实施。",
+      "label": "neutral"
+    },
+    {
+      "text": "这款游戏画面精美，玩法丰富，非常耐玩，强烈推荐！",
+      "label": "positive"
+    },
+    {
+      "text": "医院挂号难，排队时间长，就医体验差，让人很无奈。",
+      "label": "negative"
+    },
+    {
+      "text": "该数据来源于国家统计局官方发布。",
+      "label": "neutral"
+    },
+    {
+      "text": "这次活动奖品丰厚，参与方式简单，很有诚意，很棒！",
+      "label": "positive"
+    },
+    {
+      "text": "空气污染指数超标，建议减少户外活动，影响健康。",
+      "label": "negative"
+    },
+    {
+      "text": "考试时间定于下周一上午进行。",
+      "label": "neutral"
+    },
+    {
+      "text": "邻居们相处融洽，互帮互助，社区氛围很好，很温馨！",
+      "label": "positive"
+    },
+    {
+      "text": "这个网站经常打不开，访问速度慢得要命，太差劲了。",
+      "label": "negative"
+    },
+    {
+      "text": "该技术已申请专利保护。",
+      "label": "neutral"
+    },
+    {
+      "text": "音乐会演出精彩绝伦，观众反响热烈，非常成功！",
+      "label": "positive"
+    },
+    {
+      "text": "教育资源分配不均，城乡差距明显，需要改善。",
+      "label": "negative"
+    },
+    {
+      "text": "该通知已张贴在公告栏，请注意查看。",
+      "label": "neutral"
+    },
+    {
+      "text": "新员工培训体系完善，入职指导很到位，很有帮助！",
+      "label": "positive"
+    },
+    {
+      "text": "这个品牌质量把控不严，出现多次质量问题，让人失望。",
+      "label": "negative"
+    },
+    {
+      "text": "图书馆新增了一批专业书籍，可供借阅。",
+      "label": "neutral"
+    },
+    {
+      "text": "志愿者活动组织得井井有条，参与者都很满意，很成功！",
+      "label": "positive"
+    },
+    {
+      "text": "电信诈骗案件频发，警方提醒市民提高警惕，注意安全。",
+      "label": "negative"
+    },
+    {
+      "text": "该产品已通过质量认证，符合国家标准。",
+      "label": "neutral"
+    },
+    {
+      "text": "这次展览内容丰富，布展精美，值得一看，很棒！",
+      "label": "positive"
+    },
+    {
+      "text": "交通违法现象严重，安全隐患突出，需要加强管理。",
+      "label": "negative"
+    },
+    {
+      "text": "会议将采用线上线下结合的方式进行。",
+      "label": "neutral"
+    },
+    {
+      "text": "售后服务响应迅速，问题处理得很专业，非常满意！",
+      "label": "positive"
+    },
+    {
+      "text": "这个平台存在安全隐患，用户信息可能泄露，风险很大。",
+      "label": "negative"
+    },
+    {
+      "text": "该政策解读文件已上传至官网。",
+      "label": "neutral"
+    },
+    {
+      "text": "学校食堂饭菜可口，价格合理，学生满意度高，很好吃！",
+      "label": "positive"
+    },
+    {
+      "text": "城市内涝问题严重，排水系统亟需改造，影响生活。",
+      "label": "negative"
+    },
+    {
+      "text": "该项目的环境影响评估报告已公示。",
+      "label": "neutral"
+    },
+    {
+      "text": "这次比赛组织得很成功，选手表现出色，非常精彩！",
+      "label": "positive"
+    },
+    {
+      "text": "虚假广告泛滥，消费者权益受损严重，应该严惩。",
+      "label": "negative"
+    },
+    {
+      "text": "该路段限速60公里每小时，请注意安全。",
+      "label": "neutral"
+    },
+    {
+      "text": "新系统上线后，工作效率提高了不少，很满意！",
+      "label": "positive"
+    },
+    {
+      "text": "这个培训机构师资力量薄弱，教学质量堪忧，浪费钱。",
+      "label": "negative"
+    },
+    {
+      "text": "该数据截止到上月底，仅供参考。",
+      "label": "neutral"
+    },
+    {
+      "text": "社区医院服务态度好，看病方便快捷，很满意！",
+      "label": "positive"
+    },
+    {
+      "text": "网络谣言传播迅速，社会影响恶劣，需要治理。",
+      "label": "negative"
+    },
+    {
+      "text": "该活动报名截止日期为本周五。",
+      "label": "neutral"
+    },
+    {
+      "text": "这次改革措施得力，群众反响良好，很成功！",
+      "label": "positive"
+    },
+    {
+      "text": "物业费收取不透明，业主质疑资金去向，管理混乱。",
+      "label": "negative"
+    },
+    {
+      "text": "该报告详细分析了行业发展趋势。",
+      "label": "neutral"
+    },
+    {
+      "text": "新产品功能强大，设计人性化，市场反响很好，很受欢迎！",
+      "label": "positive"
+    },
+    {
+      "text": "这个APP频繁弹窗广告，严重影响使用体验，太烦人了。",
+      "label": "negative"
+    },
+    {
+      "text": "该通知自发布之日起生效。",
+      "label": "neutral"
+    },
+    {
+      "text": "图书馆工作人员服务热情，借阅流程便捷，很方便！",
+      "label": "positive"
+    },
+    {
+      "text": "就业形势严峻，大学生找工作难度加大，压力很大。",
+      "label": "negative"
+    },
+    {
+      "text": "该系统支持多种文件格式导入导出。",
+      "label": "neutral"
+    },
+    {
+      "text": "这次团建活动安排得很好，增进了同事间的感情，很开心！",
+      "label": "positive"
+    },
+    {
+      "text": "共享单车乱停乱放，影响市容市貌，需要加强管理。",
+      "label": "negative"
+    },
+    {
+      "text": "该功能目前处于测试阶段，可能存在不稳定情况。",
+      "label": "neutral"
+    },
+    {
+      "text": "新政策实施后，群众办事更加方便快捷，很满意！",
+      "label": "positive"
+    },
+    {
+      "text": "这个平台客服回复慢，问题解决效率低，服务很差。",
+      "label": "negative"
+    },
+    {
+      "text": "该数据每季度更新一次。",
+      "label": "neutral"
+    },
+    {
+      "text": "这次培训课程设置合理，讲师水平高，学员收获大，很有帮助！",
+      "label": "positive"
+    },
+    {
+      "text": "医患关系紧张，医疗纠纷频发，需要改善。",
+      "label": "negative"
+    },
+    {
+      "text": "该文件已归档，可在档案室查阅。",
+      "label": "neutral"
+    },
+    {
+      "text": "新开的健身房设备齐全，教练专业，环境舒适，很棒！",
+      "label": "positive"
+    },
+    {
+      "text": "这个小区停车位紧张，业主停车困难，很不方便。",
+      "label": "negative"
+    },
+    {
+      "text": "该活动不收取任何费用，免费参加。",
+      "label": "neutral"
+    },
+    {
+      "text": "这次演出效果超出预期，观众掌声不断，非常成功！",
+      "label": "positive"
+    },
+    {
+      "text": "网络暴力问题严重，受害者维权困难，需要关注。",
+      "label": "negative"
+    },
+    {
+      "text": "该服务热线24小时开通。",
+      "label": "neutral"
+    },
+    {
+      "text": "新推出的优惠政策力度大，真正惠及消费者，很好！",
+      "label": "positive"
+    },
+    {
+      "text": "这个品牌售后服务差，投诉渠道不畅通，让人失望。",
+      "label": "negative"
+    },
+    {
+      "text": "该规定适用于所有在职员工。",
+      "label": "neutral"
+    }
+  ]
+}
