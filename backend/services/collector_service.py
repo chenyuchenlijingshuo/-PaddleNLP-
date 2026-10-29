@@ -68,6 +68,9 @@ def _split_values(raw: str):
     - 分割后的字符串列表
     """
     text = (raw or "").replace("\n", ",").replace("\r", ",")
+    # 兼容中文输入法下的全角逗号、顿号、分号
+    for sep in ["，", "、", "；", ";"]:
+        text = text.replace(sep, ",")
     return [item.strip() for item in text.split(",") if item.strip()]
 
 
@@ -206,7 +209,16 @@ def _tail_text(text: str, max_lines: int = 8):
 
 
 
-def _load_weibo_items_from_sqlite(rule: CollectRule, user_ids):
+def _match_topic_keywords(item, topic_keywords):
+    text = f"{item.get('title') or ''}\n{item.get('content') or ''}".lower()
+    hits = []
+    for kw in topic_keywords:
+        if kw and kw.lower() in text and kw not in hits:
+            hits.append(kw)
+    return hits
+
+
+def _load_weibo_items_from_sqlite(rule: CollectRule, user_ids, limit):
     if not WEIBO_SQLITE_PATH.exists():
         raise FileNotFoundError(f"未找到微博结果库: {WEIBO_SQLITE_PATH}")
 
@@ -237,12 +249,12 @@ def _load_weibo_items_from_sqlite(rule: CollectRule, user_ids):
                     "source_type": "weibo",
                 }
             )
-            if len(items) >= max(rule.max_count or 100, 1):
+            if len(items) >= limit:
                 break
     return items
 
 
-def _load_weibo_items_from_files(rule: CollectRule, user_ids):
+def _load_weibo_items_from_files(rule: CollectRule, user_ids, limit):
     if not WEIBO_DATA_DIR.exists():
         raise FileNotFoundError(f"未找到微博数据目录: {WEIBO_DATA_DIR}")
 
@@ -281,13 +293,13 @@ def _load_weibo_items_from_files(rule: CollectRule, user_ids):
                     "source_type": "weibo",
                 }
             )
-            if len(items) >= max(rule.max_count or 100, 1):
+            if len(items) >= limit:
                 break
-        if len(items) >= max(rule.max_count or 100, 1):
+        if len(items) >= limit:
             break
 
     items.sort(key=lambda x: x.get("published_at") or datetime.min, reverse=True)
-    return items[: max(rule.max_count or 100, 1)]
+    return items[:limit]
 
 
 def _run_weibo_crawler():
@@ -320,20 +332,38 @@ def _fetch_weibo_items(rule: CollectRule):
     user_ids = _prepare_weibo_user_list(rule)
     _sync_weibo_config_with_rule(rule)
     info = _run_weibo_crawler()
+
+    limit = max(rule.max_count or 100, 1)
+    topic_keywords = _split_values(rule.topic_keywords or "")
+    # 配置主题词时多取一些原始微博，避免过滤后数量不足
+    fetch_limit = max(limit * 3, 100) if topic_keywords else limit
+
     # 优先从爬虫输出文件读取（该项目默认输出 json/csv），若存在 sqlite 则回退使用 sqlite
     if WEIBO_SQLITE_PATH.exists():
-        items = _load_weibo_items_from_sqlite(rule, user_ids)
+        items = _load_weibo_items_from_sqlite(rule, user_ids, fetch_limit)
         if not items:
-            items = _load_weibo_items_from_files(rule, user_ids)
+            items = _load_weibo_items_from_files(rule, user_ids, fetch_limit)
             if items:
                 info = f"{info}; sqlite-empty-fallback-json"
             else:
                 info = f"{info}; 未找到用户ID {user_ids} 的微博数据，请检查用户ID是否正确或Cookie是否过期"
     else:
-        items = _load_weibo_items_from_files(rule, user_ids)
+        items = _load_weibo_items_from_files(rule, user_ids, fetch_limit)
         if not items:
             info = f"{info}; 未找到用户ID {user_ids} 的微博数据文件"
-    return items, info
+
+    if topic_keywords and items:
+        matched = []
+        for item in items:
+            hits = _match_topic_keywords(item, topic_keywords)
+            if not hits:
+                continue
+            item["keyword_hit"] = ",".join(hits)
+            matched.append(item)
+        info = f"{info}; 主题筛选命中 {len(matched)}/{len(items)} 条"
+        items = matched
+
+    return items[:limit], info
 
 
 def _fetch_items(rule: CollectRule):
