@@ -1,3 +1,14 @@
-venv/ 
-__pycache__/ 
-*.pyc 
+# 忽略前端依赖和打包文件
+frontend/node_modules/
+frontend/dist/
+
+# 忽略 Python 虚拟环境和缓存
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# 忽略环境变量等敏感文件
+.env
+frontend/node_modules/
+frontend/dist/

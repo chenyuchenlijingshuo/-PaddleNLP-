@@ -168,7 +168,7 @@ def keyword_based_sentiment(text):
 def enhance_sentiment_prediction(text, nlp_label, nlp_score):
     keyword_label = keyword_based_sentiment(text)
     
-    if nlp_score and nlp_score >= 0.90:
+    if nlp_score and nlp_score >= 0.95:
         return nlp_label
     
     if keyword_label:
@@ -289,6 +289,15 @@ def evaluate_sentiment_model(sample_size=None):
         }
 
     items = result.get("items", [])
+    if len(items) != len(texts):
+        return {
+            "success": False,
+            "message": f"模型返回 {len(items)} 条预测，预期 {len(texts)} 条；本次不计算准确率。",
+            "metrics": None,
+        }
+    raw_predictions = [normalize_label(item.get("label")) for item in items[: len(texts)]]
+    if len(raw_predictions) < len(texts):
+        raw_predictions.extend(["neutral"] * (len(texts) - len(raw_predictions)))
     y_pred = []
     for i, item in enumerate(items):
         nlp_label = normalize_label(item.get("label"))
@@ -298,6 +307,7 @@ def evaluate_sentiment_model(sample_size=None):
         enhanced_label = enhance_sentiment_prediction(text, nlp_label, nlp_score)
         y_pred.append(enhanced_label)
 
+    raw_metrics = compute_metrics(y_true, raw_predictions)
     metrics = compute_metrics(y_true, y_pred)
 
     label_distribution = Counter(y_true)
@@ -326,6 +336,12 @@ def evaluate_sentiment_model(sample_size=None):
         "success": True,
         "message": "评估完成",
         "metrics": metrics,
+        "model_metrics": raw_metrics,
+        "enhancement": {
+            "method": "PaddleNLP prediction with confidence-gated lexicon correction",
+            "confidence_threshold": 0.95,
+            "accuracy_gain": round(metrics["accuracy"] - raw_metrics["accuracy"], 4),
+        },
         "dataset_info": {
             "total_samples": len(samples),
             "label_distribution": dict(label_distribution),

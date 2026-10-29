@@ -765,7 +765,7 @@ const refreshVisualization = async () => {
 
 const loadStatus = async () => {
   try {
-    const { data } = await http.get("/analyze/nlp/status");
+    const { data } = await http.get("/analyze/nlp/status", { timeout: 600000 });
     Object.assign(nlpStatus, data.data || {});
   } catch (e) {
     const msg = e.response?.data?.message || e.message || "NLP 状态获取失败";

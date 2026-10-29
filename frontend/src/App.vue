@@ -82,7 +82,7 @@
             <HomeView v-if="tab === 'home'" key="home" @navigate="tab = $event" />
             <CollectView v-else-if="tab === 'collect'" key="collect" />
             <ProcessView v-else-if="tab === 'process'" key="process" />
-            <AnalyzeView v-else-if="tab === 'analyze'" key="analyze" />
+            <PythonAnalysisFrame v-else-if="tab === 'analyze'" key="analyze" />
             <AlertView v-else-if="tab === 'alert'" key="alert" />
             <UsersView v-else key="users" />
           </transition>
@@ -95,12 +95,12 @@
 <script setup>
 import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import AlertView from "./views/AlertView.vue";
-import AnalyzeView from "./views/AnalyzeView.vue";
 import CollectView from "./views/CollectView.vue";
 import HomeView from "./views/HomeView.vue";
 import LoginView from "./views/LoginView.vue";
 import ProcessView from "./views/ProcessView.vue";
 import UsersView from "./views/UsersView.vue";
+import PythonAnalysisFrame from "./components/PythonAnalysisFrame.vue";
 
 const tabs = [
   { key: "home", index: "01", label: "首页", desc: "总览和入口", stage: "概览", longDesc: "查看全局态势、热点和预警提示。", roles: ["admin", "user", "viewer"] },
