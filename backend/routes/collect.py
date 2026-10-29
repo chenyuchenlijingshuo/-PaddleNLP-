@@ -66,6 +66,7 @@ def list_rules():
                     "id": r.id,
                     "name": r.name,
                     "keywords": r.keywords,
+                    "topic_keywords": r.topic_keywords,
                     "max_count": r.max_count,
                     "source_type": r.source_type,
                     "enabled": r.enabled,
@@ -89,6 +90,7 @@ def create_rule():
     rule = CollectRule(
         name=(data.get("name") or "").strip(),
         keywords=(data.get("keywords") or "").strip(),
+        topic_keywords=(data.get("topic_keywords") or "").strip(),
         time_start=_parse_dt(data.get("time_start")),
         time_end=_parse_dt(data.get("time_end")),
         max_count=int(data.get("max_count") or 100),
@@ -113,7 +115,7 @@ def update_rule(rule_id: int):
     if not row:
         return err("规则不存在", code=404, http_status=404)
     data = request.get_json(silent=True) or {}
-    for field in ["name", "keywords", "source_type"]:
+    for field in ["name", "keywords", "topic_keywords", "source_type"]:
         if field in data:
             setattr(row, field, (data.get(field) or "").strip())
     if "max_count" in data:

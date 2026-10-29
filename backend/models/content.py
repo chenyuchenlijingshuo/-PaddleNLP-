@@ -53,6 +53,7 @@ class CollectRule(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128), nullable=False)
     keywords = db.Column(db.Text, nullable=False)  # 逗号分隔
+    topic_keywords = db.Column(db.Text)  # 主题关键词（逗号分隔），用于采集后相关性筛选
     time_start = db.Column(db.DateTime)
     time_end = db.Column(db.DateTime)
     max_count = db.Column(db.Integer, default=100)

@@ -35,6 +35,12 @@
             class="wide-input"
             :placeholder="keywordPlaceholder"
           />
+          <el-input
+            v-if="rule.source_type === 'weibo'"
+            v-model="rule.topic_keywords"
+            class="wide-input"
+            placeholder="主题关键词，多个用逗号分隔，如：苹果,iPhone,折叠屏"
+          />
           <el-input-number v-model="rule.max_count" :min="1" :max="500" />
           <el-date-picker
             v-model="timeRange"
@@ -67,6 +73,7 @@
               <el-table-column prop="name" label="规则名称" min-width="140" />
               <el-table-column prop="source_type" label="来源" width="100" />
               <el-table-column prop="keywords" label="内容" min-width="220" />
+              <el-table-column prop="topic_keywords" label="主题词" min-width="180" />
               <el-table-column prop="time_start" label="开始时间" min-width="160" />
               <el-table-column prop="time_end" label="结束时间" min-width="160" />
               <el-table-column label="状态" width="100">
@@ -161,7 +168,7 @@ import { ElMessage, ElMessageBox } from "element-plus";
 import http from "../api/http";
 import BackToTop from "../components/BackToTop.vue";
 
-const rule = ref({ name: "", keywords: "", source_type: "news", max_count: 30 });
+const rule = ref({ name: "", keywords: "", topic_keywords: "", source_type: "news", max_count: 30 });
 const timeRange = ref([]);
 const rules = ref([]);
 const rulesTotal = ref(0);
@@ -192,7 +199,7 @@ const keywordPlaceholder = computed(() =>
 );
 const formHint = computed(() =>
   rule.value.source_type === "weibo"
-    ? "微博来源需要填写用户ID。"
+    ? "微博来源填写用户ID；主题关键词用于采集后筛选，只保留标题或正文命中的微博。"
     : "新闻来源填写关键词。"
 );
 
@@ -213,6 +220,10 @@ const validateRule = () => {
       .some((item) => !/^\d+$/.test(item));
     if (invalid) {
       ElMessage.error("微博用户ID只能填写数字");
+      return false;
+    }
+    if (!rule.value.topic_keywords.trim()) {
+      ElMessage.error("请填写主题关键词，用于筛掉不相关微博");
       return false;
     }
   }
@@ -268,7 +279,7 @@ const onRulesSizeChange = async (size) => {
 };
 
 const resetForm = () => {
-  rule.value = { name: "", keywords: "", source_type: rule.value.source_type, max_count: 30 };
+  rule.value = { name: "", keywords: "", topic_keywords: "", source_type: rule.value.source_type, max_count: 30 };
   timeRange.value = [];
 };
 
