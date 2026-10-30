@@ -23,6 +23,7 @@ from config import Config
 from extensions import db, jwt
 from models import *  # noqa: F401,F403
 from python_analysis import init_python_analysis
+from python_process import init_python_process
 from routes.alert import alert_bp
 from routes.analyze import analyze_bp
 from routes.auth import auth_bp
@@ -109,6 +110,7 @@ def create_app():
     app.register_blueprint(alert_bp, url_prefix="/api/alert")
     app.register_blueprint(dashboard_bp, url_prefix="/api/dashboard")
     init_python_analysis(app)
+    init_python_process(app)
 
     # 注册Flask CLI命令：创建数据库表
     @app.cli.command("create_tables")
