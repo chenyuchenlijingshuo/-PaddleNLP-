@@ -2,14 +2,21 @@
   <iframe
     ref="frame"
     class="python-analysis-frame"
-    src="/python-analysis/"
-    title="Python 分析工作台"
+    :src="src"
+    :title="title"
     @load="syncToken"
   />
 </template>
 
 <script setup>
 import { onMounted, onBeforeUnmount, ref } from "vue";
+
+const props = defineProps({
+  src: { type: String, default: "/python-analysis/" },
+  title: { type: String, default: "Python 分析工作台" },
+  sessionPath: { type: String, default: "/python-analysis/session" },
+  minHeight: { type: Number, default: 1800 },
+});
 
 const frame = ref(null);
 let syncedToken = "";
@@ -22,7 +29,7 @@ const syncToken = async () => {
   if (!childWindow) return;
   if (token !== syncedToken) {
     try {
-      const response = await fetch("/python-analysis/session", {
+      const response = await fetch(props.sessionPath, {
         method: token ? "POST" : "DELETE",
         headers: token ? { Authorization: `Bearer ${token}` } : {},
         credentials: "same-origin",
@@ -40,7 +47,7 @@ const syncToken = async () => {
 
   const childDocument = childWindow.document;
   const updateHeight = () => {
-    frame.value.style.height = `${Math.max(childDocument.documentElement.scrollHeight, 1800)}px`;
+    frame.value.style.height = `${Math.max(childDocument.documentElement.scrollHeight, props.minHeight)}px`;
   };
   resizeObserver?.disconnect();
   mutationObserver?.disconnect();

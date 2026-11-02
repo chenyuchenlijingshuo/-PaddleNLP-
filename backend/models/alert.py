@@ -72,7 +72,7 @@ class AlertRule(db.Model):
 
 
 class AlertLog(db.Model):
-   """预警日志模型 —— 冗余 category / chart_path 便于分组 + Matplotlib 图"""
+    """预警日志模型 —— 冗余 category / chart_path 便于分组 + Matplotlib 图"""
     
     __tablename__ = "alert_logs"
 
